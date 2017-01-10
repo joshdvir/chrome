@@ -27,6 +27,12 @@ RUN apt-key add /tmp/linux_signing_key.pub \
 	&& mkdir -p /home/chrome/.config/chrome-remote-desktop \
 	&& chown -R chrome:chrome /home/chrome/.config
 
+RUN apt-get install -y \
+    curl \
+    curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
+    apt-get install -y nodejs git && \
+    rm -rf /var/lib/apt/lists/*
+
 VOLUME ["/home/chrome"]
 
 EXPOSE 5900
